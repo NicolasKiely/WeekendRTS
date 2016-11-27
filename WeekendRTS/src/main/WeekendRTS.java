@@ -1,6 +1,6 @@
 package main;
 
-import client.MainFrame;
+import client.view.MainFrame;
 
 /**
  * Entry class of application
@@ -9,6 +9,7 @@ import client.MainFrame;
 public class WeekendRTS {
 	public final static String APP_NAME = "Weekend RTS";
 	
+	@SuppressWarnings("unused")
 	private static MainFrame mainFrame;
 	
 	public static void main(String[] args) {

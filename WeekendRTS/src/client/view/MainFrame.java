@@ -1,4 +1,4 @@
-package client;
+package client.view;
 
 import javax.swing.JFrame;
 
@@ -9,6 +9,7 @@ import main.WeekendRTS;
  * @author Nicolas Kiely
  */
 public class MainFrame extends JFrame {
+	private static final long serialVersionUID = 1L;
 	/** Window width */
 	private final static int WIDTH = 640;
 	/** Window height */
@@ -39,15 +40,15 @@ public class MainFrame extends JFrame {
 	private MainFrame(){
 		//super();
 		
-		/* Set up frame */
+		// Set up frame
 		this.setSize(WIDTH, HEIGHT);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle(WeekendRTS.APP_NAME +": Main Menu");
 		
-		/* Initialize panels */
+		// Initialize panels
 		this.mainMenuPanel = new MainMenuPanel();
 		
-		/* Set visible */
+		// Set visible
 		this.switchToPanel(MAIN_MENU_PANEL);
 		this.setVisible(true);
 	}
@@ -60,18 +61,18 @@ public class MainFrame extends JFrame {
 	public void switchToPanel(int panelNo){
 		AbstractContentPanel nextPanel = null;
 		
-		/* Lookup panel by id */
+		// Lookup panel by id
 		switch (panelNo){
 		case MAIN_MENU_PANEL:
 			nextPanel = this.mainMenuPanel;
 			break;
 		}
 		
-		/* Handle null panel */
+		// Handle null panel
 		if (nextPanel == null)
 			throw new IllegalArgumentException("Invalid Panel #: "+ panelNo);
 		
-		/* Close active panel and switch to new panel */
+		// Close active panel and switch to new panel
 		if (this.activePanel != null){
 			this.remove(this.activePanel);
 		}
