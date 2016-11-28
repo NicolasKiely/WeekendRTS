@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
+import client.view.MainFrame;
+
 /**
  * Handles starting up a new game
  * @author Nicolas Kiely
@@ -17,6 +19,7 @@ public class InitializeGame {
 
 		public void actionPerformed(ActionEvent e){
 			System.out.println("Starting new game");
+			MainFrame.getMainFrame().switchToPanel(MainFrame.NEW_GAME_PANEL);
 		}
 	}
 }

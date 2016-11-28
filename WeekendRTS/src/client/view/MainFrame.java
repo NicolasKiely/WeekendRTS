@@ -1,5 +1,8 @@
 package client.view;
 
+import java.awt.CardLayout;
+import java.awt.Container;
+
 import javax.swing.JFrame;
 
 import main.WeekendRTS;
@@ -21,7 +24,11 @@ public class MainFrame extends JFrame {
 	
 	/** Main menu panel */
 	private MainMenuPanel mainMenuPanel;
-	public final static int MAIN_MENU_PANEL = 0;
+	public final static String MAIN_MENU_PANEL = "Main Menu";
+	
+	/** New game panel */
+	private NewGamePanel newGamePanel;
+	public final static String NEW_GAME_PANEL = "New Game";
 	
 	/**
 	 * Returns singleton instance of MainFrame
@@ -44,9 +51,15 @@ public class MainFrame extends JFrame {
 		this.setSize(WIDTH, HEIGHT);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle(WeekendRTS.APP_NAME +": Main Menu");
+		Container pane = this.getContentPane();
+		pane.setLayout(new CardLayout());
 		
 		// Initialize panels
 		this.mainMenuPanel = new MainMenuPanel();
+		this.newGamePanel = new NewGamePanel();
+		
+		pane.add(this.mainMenuPanel, MAIN_MENU_PANEL);
+		pane.add(this.newGamePanel, NEW_GAME_PANEL);
 		
 		// Set visible
 		this.switchToPanel(MAIN_MENU_PANEL);
@@ -56,28 +69,11 @@ public class MainFrame extends JFrame {
 	
 	/**
 	 * Switches to new panel
-	 * @param panelNo ID of panel
+	 * @param panelName ID of panel
 	 */
-	public void switchToPanel(int panelNo){
-		AbstractContentPanel nextPanel = null;
-		
-		// Lookup panel by id
-		switch (panelNo){
-		case MAIN_MENU_PANEL:
-			nextPanel = this.mainMenuPanel;
-			break;
-		}
-		
-		// Handle null panel
-		if (nextPanel == null)
-			throw new IllegalArgumentException("Invalid Panel #: "+ panelNo);
-		
-		// Close active panel and switch to new panel
-		if (this.activePanel != null){
-			this.remove(this.activePanel);
-		}
-		this.activePanel = nextPanel;
-		this.add(nextPanel);
-		this.activePanel.onSwitch();
+	public void switchToPanel(String panelName){
+		Container pane = this.getContentPane();
+		CardLayout cards = (CardLayout) pane.getLayout();
+		cards.show(pane, panelName);
 	}
 }

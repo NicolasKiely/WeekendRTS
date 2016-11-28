@@ -8,7 +8,7 @@ import client.controller.Exit;
 import client.controller.InitializeGame;
 
 /**
- * Main Menu
+ * Main Menu Screen
  * @author Nicolas Kiely
  */
 public class MainMenuPanel extends AbstractContentPanel {
