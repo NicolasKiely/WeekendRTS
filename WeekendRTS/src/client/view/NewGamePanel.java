@@ -1,10 +1,18 @@
 package client.view;
 
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JSeparator;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 /**
  * New Game Screen
@@ -26,7 +34,8 @@ public class NewGamePanel extends AbstractContentPanel {
 		gbc.gridwidth = 2;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		gbc.ipadx = 5;
+		gbc.ipadx = 10;
+		gbc.ipady = 10;
 		
 		// Initialize input fields
 		noPlayersField = new JTextField();
@@ -47,5 +56,16 @@ public class NewGamePanel extends AbstractContentPanel {
 		this.add(inputField);
 		
 		gbc.gridy++;
+	}
+	
+	protected List<Component> getSideBarComponents(){
+		JSeparator separator = new JSeparator(SwingConstants.HORIZONTAL);
+		separator.setPreferredSize(new Dimension(1, 1));
+		Component buttons[] = {
+				new JButton("Start"),
+				separator,
+				new JButton("Cancel")
+		};
+		return Arrays.asList(buttons);
 	}
 }
