@@ -22,4 +22,15 @@ public class InitializeGame {
 			MainFrame.getMainFrame().switchToPanel(MainFrame.NEW_GAME_PANEL);
 		}
 	}
+	
+	/**
+	 * Handler for "Cancel" button when starting new game
+	 */
+	public static class CancelNewGameAction extends AbstractAction{
+		private static final long serialVersionUID = 1L;
+		
+		public void actionPerformed(ActionEvent e){
+			MainFrame.getMainFrame().switchToPanel(MainFrame.MAIN_MENU_PANEL);
+		}
+	}
 }

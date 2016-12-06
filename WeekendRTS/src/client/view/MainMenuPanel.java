@@ -2,6 +2,8 @@ package client.view;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
+
 import javax.swing.JButton;
 
 import client.controller.Exit;
@@ -25,8 +27,10 @@ public class MainMenuPanel extends AbstractContentPanel {
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.ipady = 10;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
+		gbc.insets = new Insets(20, 20, 20, 20);
 		
 		// Initialize buttons
 		startGameBtn = new JButton(new InitializeGame.StartNewGameAction());

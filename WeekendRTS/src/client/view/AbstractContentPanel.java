@@ -3,9 +3,9 @@ package client.view;
 import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.JPanel;
 
@@ -41,9 +41,8 @@ public abstract class AbstractContentPanel extends JPanel {
 			this.sideBarPanel.setLayout(new GridBagLayout());
 			GridBagConstraints gbc = new GridBagConstraints();
 			gbc.fill = GridBagConstraints.HORIZONTAL;
-			gbc.gridwidth = 1;
 			gbc.gridy = 0;
-			gbc.ipady = 10;
+			gbc.insets = new Insets(10, 10, 10, 10);
 			
 			List <Component> components = this.getSideBarComponents();
 			if (components == null)

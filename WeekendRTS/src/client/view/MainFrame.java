@@ -4,6 +4,7 @@ import java.awt.CardLayout;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,9 +18,9 @@ import main.WeekendRTS;
 public class MainFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	/** Window width */
-	private final static int WIDTH = 640;
+	public final static int WIDTH = 640;
 	/** Window height */
-	private final static int HEIGHT = 480;
+	public final static int HEIGHT = 480;
 	/** Singleton instance */
 	private static MainFrame mainFrame;
 	
@@ -61,9 +62,11 @@ public class MainFrame extends JFrame {
 		Container pane = this.getContentPane();
 		pane.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.gridwidth = 1;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridwidth = 4;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
+		gbc.insets = new Insets(0, 5, 0, 5);
 		
 		// Set up subpanel containers
 		this.primarySide = new JPanel();
@@ -71,7 +74,8 @@ public class MainFrame extends JFrame {
 		this.primarySide.setLayout(new CardLayout());
 		this.sidebarSide.setLayout(new CardLayout());
 		pane.add(this.primarySide, gbc);
-		gbc.gridx++;
+		gbc.gridx = 1+gbc.gridwidth;
+		gbc.gridwidth = 1;
 		pane.add(this.sidebarSide, gbc);
 		
 		// Initialize and add panels
