@@ -63,7 +63,7 @@ public class MainFrame extends JFrame {
 		pane.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.HORIZONTAL;
-		gbc.gridwidth = 4;
+		gbc.gridwidth = 5;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.insets = new Insets(0, 5, 0, 5);
