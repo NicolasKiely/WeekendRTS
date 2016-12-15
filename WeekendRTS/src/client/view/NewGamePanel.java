@@ -27,8 +27,15 @@ import game.config.InvalidSettingsException;
 public class NewGamePanel extends AbstractContentPanel implements GameSettingsProvider {
 	private static final long serialVersionUID = 1L;
 	
+	// Default values for input fields
+	private static String noPlayersDefault = "1";
+	private static String mapSizeDefault = "11";
+	
+	// Input fields
 	private JTextField noPlayersFld;
 	private JTextField mapSizeFld;
+	
+	// Error message field
 	private JLabel errFld;
 	
 	public NewGamePanel(){
@@ -44,13 +51,11 @@ public class NewGamePanel extends AbstractContentPanel implements GameSettingsPr
 		gbc.insets = new Insets(10, 10, 10, 10);
 		
 		// Initialize input fields
-		noPlayersFld = new JTextField();
-		noPlayersFld.setColumns(10);
-		noPlayersFld.setText("1");
+		this.noPlayersFld = new JTextField();
+		this.noPlayersFld.setColumns(10);
 		
 		this.mapSizeFld = new JTextField();
 		this.mapSizeFld.setColumns(10);
-		this.mapSizeFld.setText("11");
 		this.mapSizeFld.setEditable(false);
 		
 		// Add fields
@@ -96,16 +101,42 @@ public class NewGamePanel extends AbstractContentPanel implements GameSettingsPr
 	}
 
 	
-	public GameSettings getSettings() {
+	public GameSettings getSettings() throws InvalidSettingsException {
 		// Generate settings from fields
 		int gameType = GameSettings.STANDARD_2D_TYPE;
-		int mapSize = Integer.parseInt(this.mapSizeFld.getText());
-		int maxPlayers = Integer.parseInt(this.noPlayersFld.getText());
+		String mapSizeText = this.mapSizeFld.getText();
+		String noPlayersText = this.noPlayersFld.getText();
+		int mapSize;
+		int maxPlayers;
+		
+		// Get map size
+		try {
+			mapSize = Integer.parseInt(mapSizeText);
+		} catch (NumberFormatException e){
+			throw new InvalidSettingsException("Map Size", "a number", mapSizeText);
+		}
+		
+		// Get number of players
+		try {
+			maxPlayers = Integer.parseInt(noPlayersText);
+		} catch (NumberFormatException e){
+			throw new InvalidSettingsException("Number Players", "a number", noPlayersText);
+		}
 		return new GameSettings(gameType, mapSize, maxPlayers);
+		
 	}
 
 
 	public void handleInvalidSetting(InvalidSettingsException invalidSettings) {
 		this.errFld.setText(invalidSettings.getMessage());
+	}
+	
+	/**
+	 * Resets fields when navigating to this panel
+	 */
+	public void onSwitch(){
+		this.noPlayersFld.setText(noPlayersDefault);
+		this.mapSizeFld.setText(mapSizeDefault);
+		this.errFld.setText("");
 	}
 }

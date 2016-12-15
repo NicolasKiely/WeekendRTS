@@ -1,6 +1,7 @@
 package client.view;
 
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -100,6 +101,12 @@ public class MainFrame extends JFrame {
 		CardLayout sidebarCards = (CardLayout) this.sidebarSide.getLayout();
 		primaryCards.show(this.primarySide, panelName);
 		sidebarCards.show(this.sidebarSide, panelName);
+		
+		for (Component c : this.primarySide.getComponents()){
+			if (c.isShowing()){
+				((AbstractContentPanel) c).onSwitch();
+			}
+		}
 	}
 	
 	

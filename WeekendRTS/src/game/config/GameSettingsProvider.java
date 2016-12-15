@@ -7,8 +7,9 @@ package game.config;
 public interface GameSettingsProvider {
 	/**
 	 * @return Generated settings
+	 * @throws InvalidSettingsException 
 	 */
-	public GameSettings getSettings();
+	public GameSettings getSettings() throws InvalidSettingsException;
 	
 	/**
 	 * Handler for when settings fail validation

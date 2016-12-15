@@ -23,7 +23,7 @@ public abstract class AbstractContentPanel extends JPanel {
 	}
 	
 	/** Called when panel is switched to */
-	public void onSwitch(){}
+	public void onSwitch(){};
 	
 	/** Returns a list of sidebar buttons for this panel */
 	protected List<Component> getSideBarComponents(){

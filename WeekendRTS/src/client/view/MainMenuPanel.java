@@ -47,4 +47,8 @@ public class MainMenuPanel extends AbstractContentPanel {
 		gbc.gridy++;
 		this.add(this.exitBtn, gbc);
 	}
+
+
+	public void onSwitch() {
+	}
 }
