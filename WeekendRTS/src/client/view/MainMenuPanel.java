@@ -33,7 +33,7 @@ public class MainMenuPanel extends AbstractContentPanel {
 		gbc.insets = new Insets(20, 20, 20, 20);
 		
 		// Initialize buttons
-		startGameBtn = new JButton(new InitializeGame.StartNewGameAction());
+		startGameBtn = new JButton(new InitializeGame.SetupNewGameAction());
 		startGameBtn.setText("Start New Game");
 		connectBtn = new JButton();
 		connectBtn.setText("Join Game");
