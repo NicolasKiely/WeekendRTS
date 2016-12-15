@@ -39,6 +39,10 @@ public class MainFrame extends JFrame {
 	private NewGamePanel newGamePanel;
 	public final static String NEW_GAME_PANEL = "New Game";
 	
+	/** Game lobby panel */
+	private GameLobbyPanel gameLobbyPanel;
+	public final static String GAME_LOBBY_PANEL = "Game Lobby";
+	
 	/**
 	 * Returns singleton instance of MainFrame
 	 * @return Window Frame
@@ -59,7 +63,6 @@ public class MainFrame extends JFrame {
 		// Set up frame
 		this.setSize(WIDTH, HEIGHT);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setTitle(WeekendRTS.APP_NAME +": Main Menu");
 		Container pane = this.getContentPane();
 		pane.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -82,9 +85,11 @@ public class MainFrame extends JFrame {
 		// Initialize and add panels
 		this.mainMenuPanel = new MainMenuPanel();
 		this.newGamePanel = new NewGamePanel();
+		this.gameLobbyPanel = new GameLobbyPanel();
 		
 		this.addContentPanel(this.mainMenuPanel, MAIN_MENU_PANEL);
 		this.addContentPanel(this.newGamePanel, NEW_GAME_PANEL);
+		this.addContentPanel(this.gameLobbyPanel, GAME_LOBBY_PANEL);
 		
 		// Set visible
 		this.switchToPanel(MAIN_MENU_PANEL);
@@ -97,16 +102,21 @@ public class MainFrame extends JFrame {
 	 * @param panelName ID of panel
 	 */
 	public void switchToPanel(String panelName){
+		// Update card layout to show panel
 		CardLayout primaryCards = (CardLayout) this.primarySide.getLayout();
 		CardLayout sidebarCards = (CardLayout) this.sidebarSide.getLayout();
 		primaryCards.show(this.primarySide, panelName);
 		sidebarCards.show(this.sidebarSide, panelName);
 		
+		// Call panel's onSwitch()
 		for (Component c : this.primarySide.getComponents()){
 			if (c.isShowing()){
 				((AbstractContentPanel) c).onSwitch();
 			}
 		}
+		
+		// Set frame title
+		this.setTitle(WeekendRTS.APP_NAME +": "+ panelName);
 	}
 	
 	

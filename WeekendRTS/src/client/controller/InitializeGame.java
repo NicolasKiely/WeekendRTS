@@ -27,6 +27,7 @@ public class InitializeGame {
 		}
 	}
 	
+	
 	/**
 	 * Handler for "Start Game" in setup screen
 	 * Starts game
@@ -44,12 +45,14 @@ public class InitializeGame {
 			System.out.println("Starting new game");
 			try {
 				GameSettingsValidator.validateSettings(provider.getSettings());
+				MainFrame.getMainFrame().switchToPanel(MainFrame.GAME_LOBBY_PANEL);
+				
 			} catch (InvalidSettingsException invalidSetting) {
 				provider.handleInvalidSetting(invalidSetting);
 			}
-			//MainFrame.getMainFrame().switchToPanel(MainFrame.NEW_GAME_PANEL);
 		}
 	}
+	
 	
 	/**
 	 * Handler for "Cancel" button when starting new game

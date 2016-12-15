@@ -2,6 +2,8 @@ package main;
 
 import client.view.MainFrame;
 
+// todo: lobby room
+
 /**
  * Entry class of application
  * @author Nicolas Kiely

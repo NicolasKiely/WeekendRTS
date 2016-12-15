@@ -99,8 +99,11 @@ public class NewGamePanel extends AbstractContentPanel implements GameSettingsPr
 		};
 		return Arrays.asList(buttons);
 	}
-
 	
+
+	/**
+	 * Load settings values from input fields
+	 */
 	public GameSettings getSettings() throws InvalidSettingsException {
 		// Generate settings from fields
 		int gameType = GameSettings.STANDARD_2D_TYPE;
@@ -127,9 +130,13 @@ public class NewGamePanel extends AbstractContentPanel implements GameSettingsPr
 	}
 
 
+	/**
+	 * Display error message on invalid setting
+	 */
 	public void handleInvalidSetting(InvalidSettingsException invalidSettings) {
 		this.errFld.setText(invalidSettings.getMessage());
 	}
+	
 	
 	/**
 	 * Resets fields when navigating to this panel
